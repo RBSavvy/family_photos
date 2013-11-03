@@ -1,0 +1,17 @@
+#photos
+  .row
+    - @photos.each do |photo|
+      = render photo
+
+- content_for :sidebar do
+  #photo-upload
+    = form_for Photo.new do |f|
+      = f.label :image, "Upload Photos:"
+      = f.file_field :image, multiple: true, name: "photo[image]"
+
+  %script#template-upload{type: "text/x-tmpl"}
+    .upload
+      {%=o.name%}
+      .progress
+        .progress-bar.progress-bar-success{role: "progressbar", style: "width: 0%"}
+

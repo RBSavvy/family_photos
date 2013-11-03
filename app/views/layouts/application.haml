@@ -1,0 +1,25 @@
+!!!
+%html{lang: "en"}
+  %head
+    = csrf_meta_tag
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "author"}/
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+
+    %title Off Canvas Template for Bootstrap
+
+  %body
+    = render 'layouts/header'
+
+    .container
+      .row.row-offcanvas.row-offcanvas-right
+        .col-xs-6.col-sm-3
+          = render 'layouts/sidebar'
+        .col-xs-12.col-sm-9
+          = yield
+      = render 'layouts/footer'
+
+  = javascript_include_tag 'application'
