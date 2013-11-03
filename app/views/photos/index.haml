@@ -1,7 +1,6 @@
-%h2
-  = current_album.name
-  %a#download-album{href: '#'}
-    %span.glyphicon.glyphicon-cloud-download
+- content_for :page_header do
+  %h2
+    = current_album.name
 
 #photos
   .row
@@ -9,13 +8,29 @@
       = render photo
 
 - content_for :sidebar do
+  #photo-download{style: 'margin-bottom: 2em'}
+    %label
+      Download:
+    %br
+    #download-album.btn.btn-primary.form-control
+      %span.glyphicon.glyphicon-cloud-download
+      &nbsp
+      Download All
+      &nbsp
+      %span.glyphicon.glyphicon-cloud-download
+
   #photo-upload
     = form_for [current_album, Photo.new], html: {role: "form"} do |f|
       .form-group
-        = f.label :image, "Upload Photos:"
+        = f.label :image, "Upload:"
         = f.file_field :image, multiple: true, name: "photo[image]", class: "hidden", id: "upload-field"
         #upload-btn.form-control.btn.btn-primary
+          %span.glyphicon.glyphicon-cloud-upload
+          &nbsp
           Upload
+          &nbsp
+          %span.glyphicon.glyphicon-cloud-upload
+
       .well.well-lg
         or Drag and Drop Here
 

@@ -16,7 +16,10 @@
     = render 'layouts/header'
 
     .container
-      .row.row-offcanvas.row-offcanvas-right
+      .row
+        .col-xs-12.col-sm-9
+          = yield :page_header
+      .row
         .col-xs-12.col-sm-9
           = yield
         .col-xs-6.col-sm-3
