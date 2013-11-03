@@ -6,5 +6,6 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = 'johnson-family-photos'
   config.fog_public     = false
-  config.fog_attributes = {'Cache-Control'=>'public, max-age=315576000'}
+  config.fog_attributes = {'Cache-Control'=>'public, max-age=31557600'}
+  config.fog_authenticated_url_expiration = 31557600
 end

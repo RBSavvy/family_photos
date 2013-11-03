@@ -1,8 +1,21 @@
 .col-md-4
   .panel.panel-default
     .panel-body.text-center
-      %a{href: photo.image.url}
-        = image_tag photo.image.thumb.url, height: 200, width: 200
+      %a{href: '#', "data-target" => "#view-photo-modal-#{photo.id}", "data-toggle" => "modal"}
+        = image_tag photo.cached_thumb_url, height: 200, width: 200
+      .modal.fade{id: "view-photo-modal-#{photo.id}", role: "dialog", tabindex: "-1"}
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %button.close{"data-dismiss" => "modal", type: "button"} ×
+              %h4
+            .modal-body
+              %a{href: photo.cached_image_url}
+                = image_tag photo.cached_image_url, style: "max-width: 100%"
+            .modal-footer.text-center
+              = photo.description
+
+
     .panel-footer
       = photo.description
       .actions.pull-right

@@ -16,7 +16,7 @@
         %td.text-center
           %a{href: album_photos_path(album)}
             - if album.photos.first.present?
-              = image_tag album.photos.first.image.micro.url
+              = image_tag album.photos.first.cached_micro_url
             - else
 
 
