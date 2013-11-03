@@ -1,4 +1,4 @@
-jQuery ->
+document.addEventListener "page:load", ->
   $('#new_photo').fileupload
     dataType: "script"
     add: (e, data) ->
@@ -19,3 +19,7 @@ jQuery ->
           fadeOut = =>
             $(data.context).hide('slow')
           setTimeout(fadeOut, 5000);
+
+
+  $('#upload-btn').on 'click', ->
+    $('#upload-field').trigger('click')

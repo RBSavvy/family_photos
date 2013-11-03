@@ -5,9 +5,15 @@
 
 - content_for :sidebar do
   #photo-upload
-    = form_for Photo.new do |f|
-      = f.label :image, "Upload Photos:"
-      = f.file_field :image, multiple: true, name: "photo[image]"
+    = form_for Photo.new, html: {role: "form"} do |f|
+      .form-group
+        = f.label :image, "Upload Photos:"
+        = f.file_field :image, multiple: true, name: "photo[image]", class: "hidden", id: "upload-field"
+        %a#upload-btn.form-control.btn.btn-primary{href: '#'}
+          Upload
+      .well.well-lg
+        or Drag and Drop Here
+
 
   %script#template-upload{type: "text/x-tmpl"}
     .upload
