@@ -1,4 +1,4 @@
-document.addEventListener "page:load", ->
+photos = ->
   $('#new_photo').fileupload
     dataType: "script"
     add: (e, data) ->
@@ -23,3 +23,6 @@ document.addEventListener "page:load", ->
 
   $('#upload-btn').on 'click', ->
     $('#upload-field').trigger('click')
+
+document.addEventListener "page:load", photos
+$(photos)

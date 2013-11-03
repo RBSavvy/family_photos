@@ -1,0 +1,9 @@
+%h2 Albums
+- @albums.each do |album|
+  .media
+    %a.pull-left{href: album_photos_path(album)}
+      = image_tag album.photos.first.image.micro.url
+
+    .media-body
+      %h4.media-heading
+        = album.name

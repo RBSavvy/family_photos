@@ -10,7 +10,7 @@
 
         %a{href:'#', "data-target" => "#edit-photo-modal-#{photo.id}", "data-toggle" => "modal"}
           %span.glyphicon.glyphicon-edit
-          = link_to photo_path(photo), method: :delete, data: { confirm: "Really?"} do
+          = link_to [current_album, photo], method: :delete, data: { confirm: "Really?"} do
             %span.glyphicon.glyphicon-trash
 
 
@@ -23,7 +23,7 @@
               %button.close{"data-dismiss" => "modal", type: "button"} ×
               %h4.modal-title
                 = "Edit Photo #{photo.id}"
-            = form_for photo do |f|
+            = form_for [current_album, photo] do |f|
               .modal-body
                 = f.label :description
                 = f.text_area :description

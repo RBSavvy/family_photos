@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = current_album.photos
   end
 
   def create
-    @photo = Photo.create(photo_params)
+    @photo = current_album.photos.create(photo_params)
     respond_to do |format|
       format.js { render layout: false}
     end
@@ -29,5 +29,10 @@ class PhotosController < ApplicationController
   def photo_params
     params.require('photo').permit(:image, :description)
   end
+
+  def current_album
+    @current_album ||= Album.find(params[:album_id])
+  end
+  helper_method :current_album
 
 end

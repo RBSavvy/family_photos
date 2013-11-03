@@ -1,3 +1,6 @@
+%h2
+  = current_album.name
+
 #photos
   .row
     - @photos.each do |photo|
@@ -5,11 +8,11 @@
 
 - content_for :sidebar do
   #photo-upload
-    = form_for Photo.new, html: {role: "form"} do |f|
+    = form_for [current_album, Photo.new], html: {role: "form"} do |f|
       .form-group
         = f.label :image, "Upload Photos:"
         = f.file_field :image, multiple: true, name: "photo[image]", class: "hidden", id: "upload-field"
-        %a#upload-btn.form-control.btn.btn-primary{href: '#'}
+        #upload-btn.form-control.btn.btn-primary
           Upload
       .well.well-lg
         or Drag and Drop Here
