@@ -25,8 +25,13 @@ photos = ->
     $('#upload-field').trigger('click')
 
   $('#download-album').on 'click', ->
-    for photo in $('.download-photo')
-      window.open(photo.href)
+    $('.download-photo').each (index, photo) ->
+      iframe = $('<iframe />');
+      iframe.attr('src', photo.href);
+      iframe.css('visibility', 'hidden');
+      iframe.css('height', '0');
+      iframe.appendTo(document.body);
+
     false
 
 document.addEventListener "page:load", photos
