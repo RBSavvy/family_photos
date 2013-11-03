@@ -1,15 +1,51 @@
 %h2 Albums
-- @albums.each do |album|
-  .media
-    %a.pull-left{href: album_photos_path(album)}
-      - if album.photos.first.present?
-        = image_tag album.photos.first.image.micro.url
-      - else
-        No Photos
+%table.table.table-striped
+  %thead
+    %td{ width: 50}
+      Preview
+    %td
+      Name
+    %td{width: '5em'}
+      Actions
 
-    .media-body
-      %h4.media-heading
-        = album.name
+  %tbody
+    - @albums.each_with_index do |album, idx|
+      %tr
+        %td.text-center
+          %a{href: album_photos_path(album)}
+            - if album.photos.first.present?
+              = image_tag album.photos.first.image.micro.url
+            - else
+
+
+        %td
+          %a{href: album_photos_path(album)}
+            = album.name || "New Album"
+
+        %td
+          %a{href:'#', "data-target" => "#edit-album-modal-#{album.id}", "data-toggle" => "modal"}
+            %span.glyphicon.glyphicon-edit
+          = link_to album, method: :delete, data: { confirm: "Really?"} do
+            %span.glyphicon.glyphicon-trash
+
+          .modal.fade{id: "edit-album-modal-#{album.id}", role: "dialog", tabindex: "-1"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %button.close{"data-dismiss" => "modal", type: "button"} ×
+                  %h4.modal-title
+                    = "Edit Album #{album.id}"
+                = form_for album do |f|
+                  .modal-body
+                    .form-group
+                      = f.label :name
+                      = f.text_field :name, class: 'form-control'
+
+
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+                    = f.submit "Save", class: 'btn btn-primary'
+
 
 - content_for :sidebar do
   %h4 New Album

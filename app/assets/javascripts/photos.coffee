@@ -24,5 +24,10 @@ photos = ->
   $('#upload-btn').on 'click', ->
     $('#upload-field').trigger('click')
 
+  $('#download-album').on 'click', ->
+    for photo in $('.download-photo')
+      window.open(photo.href)
+    false
+
 document.addEventListener "page:load", photos
 $(photos)

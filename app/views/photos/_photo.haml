@@ -8,13 +8,12 @@
       .actions.pull-right
 
 
+        %a.download-photo{href: photo.image.url(query: {"response-content-disposition" => "attachment"})}
+          %span.glyphicon.glyphicon-cloud-download
         %a{href:'#', "data-target" => "#edit-photo-modal-#{photo.id}", "data-toggle" => "modal"}
           %span.glyphicon.glyphicon-edit
-          = link_to [current_album, photo], method: :delete, data: { confirm: "Really?"} do
-            %span.glyphicon.glyphicon-trash
-
-
-
+        = link_to [current_album, photo], method: :delete, data: { confirm: "Really?"} do
+          %span.glyphicon.glyphicon-trash
 
       .modal.fade{id: "edit-photo-modal-#{photo.id}", role: "dialog", tabindex: "-1"}
         .modal-dialog

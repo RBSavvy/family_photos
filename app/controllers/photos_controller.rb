@@ -13,14 +13,13 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     @photo.update_attributes(photo_params)
-    redirect_to photos_path, notice: "Photo was successfully updated."
-
+    redirect_to album_photos_path(current_album), notice: "Photo was successfully updated."
   end
 
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
-    redirect_to photos_path, notice: "Photo was successfully destroyed."
+    redirect_to album_photos_path(current_album), notice: "Photo was successfully destroyed."
   end
 
 

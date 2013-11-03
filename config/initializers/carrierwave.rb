@@ -5,6 +5,6 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => ENV['AWS_SECRET_KEY']
   }
   config.fog_directory  = 'johnson-family-photos'
-  config.fog_public     = true
+  config.fog_public     = false
   config.fog_attributes = {'Cache-Control'=>'public, max-age=315576000'}
 end
