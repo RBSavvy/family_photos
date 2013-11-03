@@ -2,8 +2,22 @@
 - @albums.each do |album|
   .media
     %a.pull-left{href: album_photos_path(album)}
-      = image_tag album.photos.first.image.micro.url
+      - if album.photos.first.present?
+        = image_tag album.photos.first.image.micro.url
+      - else
+        No Photos
 
     .media-body
       %h4.media-heading
         = album.name
+
+- content_for :sidebar do
+  %h4 New Album
+  = form_for [Album.new], html: {role: "form"} do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.submit "Create",  class: 'btn btn-primary form-control'
+
+

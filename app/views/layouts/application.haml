@@ -17,8 +17,9 @@
 
     .container
       .row.row-offcanvas.row-offcanvas-right
-        .col-xs-6.col-sm-3
-          = render 'layouts/sidebar'
         .col-xs-12.col-sm-9
           = yield
+        .col-xs-6.col-sm-3
+          = render 'layouts/sidebar'
+
       = render 'layouts/footer'
