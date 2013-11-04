@@ -14,6 +14,28 @@
 %h3 Family Actions
 .row
   .col-md-12
+
+
+    .btn.btn-success{ href:'#', "data-target" => "#invite-family-modal", "data-toggle" => "modal"}
+      %span.glyphicon.glyphicon-plus-sign
+      Invite to Family
+
     = link_to leave_family_path(current_family), method: :delete, data: { confirm: "Really?"}, class: 'btn btn-danger' do
       %span.glyphicon.glyphicon-remove-circle
       Leave Family
+
+    #invite-family-modal.modal.fade{role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", type: "button"} ×
+            %h4.modal-title
+              = "Invite to Family"
+          .modal-body
+            %p Share this link with anyone you want to join this family
+            %p
+              %a{ href: invitation_url(current_family.invite_code) }
+                = invitation_url(current_family.invite_code)
+
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close

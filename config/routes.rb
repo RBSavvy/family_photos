@@ -17,6 +17,9 @@ Johnsonators::Application.routes.draw do
 
   get 'account' => 'users#edit'
 
+  get 'invitations/:invite_code' => 'invitations#show', as: :invitation
+  post 'invitations'             => 'invitations#create'
+
 
   root to: 'families#index'
 

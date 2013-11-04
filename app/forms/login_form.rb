@@ -2,6 +2,7 @@ class LoginForm < BaseForm
   attribute :email, String
   attribute :password, String
   attribute :user, User
+  attribute :invite_code, String
 
   validates :email, presence: true
   validates :password, presence: true

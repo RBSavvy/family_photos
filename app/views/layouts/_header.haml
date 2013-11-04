@@ -7,10 +7,11 @@
         %span.icon-bar
       %a.navbar-brand{href: root_path } Family Albums
     .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{href: families_path } My Families
       - if current_user.present?
+        %ul.nav.navbar-nav
+          %li
+            %a{href: families_path } My Families
+
         %ul.nav.navbar-nav.navbar-right
           %li
             %a{ href: account_path }
