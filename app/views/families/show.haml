@@ -3,12 +3,14 @@
 
 %table.table.table-striped
   %thead
-    %td
-      Name
-    %td
-      Phone Number
-    %td
-      Email
+    %tr
+      %th
+        Name
+      %th
+        Phone Number
+      %th
+        Email
+      %th
 
   %tbody
     - current_family.users.each do |member|
@@ -20,3 +22,26 @@
         %td
           %a{href: "mailto:#{member.email}"}
             = member.email
+        %td
+          %a.label.label-info{ href:'#', "data-target" => "#show-member-modal-#{member.id}", "data-toggle" => "modal"}
+            more info
+
+          .modal.fade{id: "show-member-modal-#{member.id}", role: "dialog", tabindex: "-1"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %button.close{"data-dismiss" => "modal", type: "button"} ×
+                  %h3.modal-title
+                    = member.name
+                .modal-body
+                  .row
+                    .col-md-4.text-center
+                      = image_tag member.gravatar_url
+                    .col-md-8
+                      %p= member.address
+                      %p= [member.city, member.state, member.zip_code].compact.join(', ')
+                      %p= member.phone
+                      %p= member.email
+
+
+                .modal-footer

@@ -1,5 +1,27 @@
 - content_for :left_sidebar do
+  %h4
+    Your Families
   .list-group
     - current_user.families.each do |family|
       %a.list-group-item{href: family_path(family), class: active_family?(family)}
         = family.name
+    %a.list-group-item{ href:'#', "data-target" => "#create-family-modal", "data-toggle" => "modal"}
+      %span.glyphicon.glyphicon-plus-sign
+      New Family
+
+  #create-family-modal.modal.fade{role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", type: "button"} ×
+          %h4.modal-title
+            = "New Family"
+        = form_for Family.new, html: {role: "form"} do |f|
+          .modal-body
+            .form-group
+              = f.label :name
+              = f.text_field :name, class: 'form-control'
+
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+            = f.submit "Create", class: 'btn btn-primary'

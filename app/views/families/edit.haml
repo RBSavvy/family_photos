@@ -1,0 +1,23 @@
+= render 'family_selector'
+= render 'family_actions'
+
+%h3 Edit Family
+.row
+  .col-md-12
+    = form_for current_family, html: {role: "form"} do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.submit "Update Family", class: 'btn btn-primary'
+
+%h3 Family Actions
+.row
+  .col-md-12
+    = link_to current_family, method: :delete, data: { confirm: "Really?"}, class: 'btn btn-danger' do
+      %span.glyphicon.glyphicon-trash
+      Delete Family
+
+    = link_to leave_family_path(current_family), method: :delete, data: { confirm: "Really?"}, class: 'btn btn-danger' do
+      %span.glyphicon.glyphicon-remove-circle
+      Leave Family

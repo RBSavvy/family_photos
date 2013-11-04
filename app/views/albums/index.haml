@@ -5,12 +5,13 @@
   .col-md-10
     %table.table.table-striped
       %thead
-        %td{ width: 50}
-          Preview
-        %td
-          Name
-        %td{width: '5em'}
-          Actions
+        %tr
+          %th{ width: 50}
+            Preview
+          %th
+            Name
+          %th{width: '5em'}
+            Actions
 
       %tbody
         - @albums.each do |album|

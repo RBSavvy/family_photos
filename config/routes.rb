@@ -1,6 +1,9 @@
 Johnsonators::Application.routes.draw do
 
   resources :families do
+    member do
+      delete :leave
+    end
     resources :albums do
       resources :photos
     end

@@ -1,12 +1,9 @@
 - content_for :page_header do
   .col-md-9.col-md-offset-3
-    %ul.nav.nav-pills
-      %li{ class: active_action?(:members)}
-        %a{href: family_path(current_family)}
-          Members
-      %li{ class: active_action?(:albums)}
-        %a{href: family_albums_path(current_family)}
-          Albums
-      %li{ class: active_action?(:invite)}
-        %a{href: "#"}
-          Invite
+    .btn-group
+      %a.btn.btn-default{href: family_path(current_family), class: active_action?(:members)}
+        Members
+      %a.btn.btn-default{href: family_albums_path(current_family), class: active_action?(:albums)}
+        Albums
+      %a.btn.btn-default{href: edit_family_path(current_family), class: active_action?(:manage)}
+        Manage
