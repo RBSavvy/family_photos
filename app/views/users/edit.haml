@@ -1,0 +1,53 @@
+- content_for :page_header do
+  .row
+    .col-md-3
+      %h2
+        %a.btn.btn-default.form-control{href: families_path}
+          %span.glyphicon.glyphicon-chevron-left
+          &nbsp
+          Back to families
+    .col-md-9
+      %h2
+        Account Info
+- content_for :left_sidebar do
+  .hidden
+
+= form_for current_user, html: {role: "form"} do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: 'form-control'
+
+  .form-group
+    = f.label :city
+    = f.text_field :city, class: 'form-control'
+
+  .form-group
+    = f.label :state
+    = f.text_field :state, class: 'form-control'
+
+  .form-group
+    = f.label :zip_code
+    = f.text_field :zip_code, class: 'form-control'
+
+  .form-group
+    = f.label :phone, 'Phone Number'
+    = f.text_field :phone, class: 'form-control'
+
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: 'form-control'
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
+
+  .form-group
+    = f.label :password_confirmation, 'Password Confirmation'
+    = f.password_field :password_confirmation, class: 'form-control'
+  .form-group
+    %button.btn.btn-primary
+      Save

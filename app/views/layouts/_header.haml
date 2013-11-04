@@ -8,12 +8,12 @@
       %a.navbar-brand{href: root_path } Families
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        / %li
-        /   %a{href: families_path } My Families
+        %li
+          %a{href: families_path } My Families
       - if current_user.present?
         %ul.nav.navbar-nav.navbar-right
           %li
-            %p.navbar-text
+            %a{ href: edit_user_path(current_user) }
               = current_user.name
           %li
             %a{ href: logout_path }
