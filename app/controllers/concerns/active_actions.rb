@@ -7,7 +7,7 @@ module ActiveActions
   end
 
   def active_family? family
-    "active" if @family.present? && @family.id == family.id
+    "active" if current_family.present? && current_family.id == family.id
   end
 
 

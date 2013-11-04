@@ -1,13 +1,21 @@
 - content_for :page_header do
-  %h2
-    = current_album.name
+  .row
+    .col-md-3
+      %h2
+        %a.btn.btn-default.form-control{href: family_albums_path(current_family)}
+          %span.glyphicon.glyphicon-chevron-left
+          &nbsp
+          Back to albums
+    .col-md-9
+      %h2
+        = current_album.name
 
 #photos
   .row
     - @photos.each do |photo|
       = render photo
 
-- content_for :sidebar do
+- content_for :left_sidebar do
   #photo-download{style: 'margin-bottom: 2em'}
     %label
       Download:
@@ -20,7 +28,7 @@
       %span.glyphicon.glyphicon-cloud-download
 
   #photo-upload
-    = form_for [current_album, Photo.new], html: {role: "form"} do |f|
+    = form_for [current_family, current_album, Photo.new], html: {role: "form"} do |f|
       .form-group
         = f.label :image, "Upload:"
         = f.file_field :image, multiple: true, name: "photo[image]", class: "hidden", id: "upload-field"

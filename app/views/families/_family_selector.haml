@@ -1,0 +1,5 @@
+- content_for :left_sidebar do
+  .list-group
+    - current_user.families.each do |family|
+      %a.list-group-item{href: family_path(family), class: active_family?(family)}
+        = family.name

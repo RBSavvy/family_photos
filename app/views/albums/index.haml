@@ -1,61 +1,40 @@
-- content_for :page_header do
-  %h2 Albums
-
-%table.table.table-striped
-  %thead
-    %td{ width: 50}
-      Preview
-    %td
-      Name
-    %td{width: '5em'}
-      Actions
-
-  %tbody
-    - @albums.each_with_index do |album, idx|
-      %tr
-        %td.text-center
-          %a{href: album_photos_path(album)}
-            - if album.photos.first.present?
-              = image_tag album.photos.first.cached_micro_url
-            - else
-
-
+= render 'families/family_selector'
+= render 'families/family_actions'
+%br
+.row
+  .col-md-10
+    %table.table.table-striped
+      %thead
+        %td{ width: 50}
+          Preview
         %td
-          %a{href: album_photos_path(album)}
-            = album.name || "New Album"
+          Name
+        %td{width: '5em'}
+          Actions
 
-        %td
-          %a{href:'#', "data-target" => "#edit-album-modal-#{album.id}", "data-toggle" => "modal"}
-            %span.glyphicon.glyphicon-edit
-          = link_to album, method: :delete, data: { confirm: "Really?"} do
-            %span.glyphicon.glyphicon-trash
-
-          .modal.fade{id: "edit-album-modal-#{album.id}", role: "dialog", tabindex: "-1"}
-            .modal-dialog
-              .modal-content
-                .modal-header
-                  %button.close{"data-dismiss" => "modal", type: "button"} ×
-                  %h4.modal-title
-                    = "Edit Album #{album.id}"
-                = form_for album do |f|
-                  .modal-body
-                    .form-group
-                      = f.label :name
-                      = f.text_field :name, class: 'form-control'
+      %tbody
+        - @albums.each do |album|
+          = render album
 
 
-                  .modal-footer
-                    %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
-                    = f.submit "Save", class: 'btn btn-primary'
 
+  .col-md-2
+    %a.btn.btn-success.btn-sm{href:'#', "data-target" => "#create-album-modal", "data-toggle" => "modal", style: 'margin-top: 1em'}
+      New Album
 
-- content_for :sidebar do
-  %h4 New Album
-  = form_for [Album.new], html: {role: "form"} do |f|
-    .form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control'
-    .form-group
-      = f.submit "Create",  class: 'btn btn-primary form-control'
+    .modal.fade{id: "create-album-modal", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", type: "button"} ×
+            %h4.modal-title
+              = "Create Album"
+          = form_for [current_family, Album.new], html: {role: "form"} do |f|
+            .modal-body
+              .form-group
+                = f.label :name
+                = f.text_field :name, class: 'form-control'
 
-
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+              = f.submit "Create", class: 'btn btn-primary'

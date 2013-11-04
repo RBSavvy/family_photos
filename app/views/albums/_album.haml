@@ -1,0 +1,35 @@
+%tr
+  %td.text-center
+    %a{href: family_album_photos_path(current_family, album)}
+      - if album.photos.first.present?
+        = image_tag album.photos.first.cached_micro_url
+      - else
+
+
+  %td
+    %a{href: family_album_photos_path(current_family, album)}
+      = album.name || "New Album"
+
+  %td
+    %a{href:'#', "data-target" => "#edit-album-modal-#{album.id}", "data-toggle" => "modal"}
+      %span.glyphicon.glyphicon-edit
+    = link_to [current_family, album], method: :delete, data: { confirm: "Really?"} do
+      %span.glyphicon.glyphicon-trash
+
+    .modal.fade{id: "edit-album-modal-#{album.id}", role: "dialog", tabindex: "-1"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", type: "button"} ×
+            %h4.modal-title
+              = "Edit Album #{album.id}"
+          = form_for [current_family, album] do |f|
+            .modal-body
+              .form-group
+                = f.label :name
+                = f.text_field :name, class: 'form-control'
+
+
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+              = f.submit "Save", class: 'btn btn-primary'

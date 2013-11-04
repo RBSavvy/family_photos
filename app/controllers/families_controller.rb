@@ -5,7 +5,7 @@ class FamiliesController < ApplicationController
   end
 
   def show
-    @family = current_families.select{|f| f.id == params[:id].to_i}.first
+    set_active_action :members
   end
 
   private
@@ -13,4 +13,8 @@ class FamiliesController < ApplicationController
     @current_families ||= current_user.families
   end
   helper_method :current_families
+
+  def current_family
+    @current_family ||= current_user.families.find(params[:id])
+  end
 end

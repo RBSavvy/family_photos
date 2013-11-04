@@ -11,7 +11,7 @@ Johnsonators::Application.routes.draw do
   get  'logout' => 'sessions#destroy'
 
 
-  root to: 'main#index'
+  root to: 'families#index'
 
 
 end
