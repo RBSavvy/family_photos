@@ -1,3 +1,22 @@
 = render 'family_selector'
 = render 'family_actions'
 
+%table.table.table-striped
+  %thead
+    %td
+      Name
+    %td
+      Phone Number
+    %td
+      Email
+
+  %tbody
+    - current_family.users.each do |member|
+      %tr
+        %td
+          = member.name
+        %td
+          = member.phone
+        %td
+          %a{href: "mailto:#{member.email}"}
+            = member.email
