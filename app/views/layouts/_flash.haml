@@ -1,0 +1,5 @@
+- flash.each do |key, message|
+  .alert.alert-message{class: "alert-#{key}"}
+    %a.close{"data-dismiss" => "alert", href: "#"} ×
+    %i.icon-info-sign
+    = message
