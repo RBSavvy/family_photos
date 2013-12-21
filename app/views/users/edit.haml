@@ -42,12 +42,17 @@
     = f.text_field :email, class: 'form-control'
 
   .form-group
-    = f.label :password
-    = f.password_field :password, class: 'form-control'
+    %a.reset-password{href: '#'} Reset Password
 
-  .form-group
-    = f.label :password_confirmation, 'Password Confirmation'
-    = f.password_field :password_confirmation, class: 'form-control'
+  .password-reset.hidden
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: 'form-control'
+
+    .form-group
+      = f.label :password_confirmation, 'Password Confirmation'
+      = f.password_field :password_confirmation, class: 'form-control'
+
   .form-group
     %button.btn.btn-primary
       Save
